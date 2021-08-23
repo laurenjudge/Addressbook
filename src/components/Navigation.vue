@@ -2,15 +2,16 @@
   <header>
     <nav class="container">
       <div class="brading">
-        <router-link class="branding-link text--primary" :to="{name: 'Home'}">
+        <router-link class="branding-link text--primary" :to="{name: 'Contacts'}">
          <span class="text--secondary">Address</span>Book
         </router-link>
       </div>
       <div class="nav-links">
         <ul>
-          <router-link class="nav-link" to='#'>All Contacts</router-link>
-          <router-link class="nav-link" to='#'>Create Contact</router-link>
-          <router-link class="nav-link" to='#'>Login/Signup</router-link>
+          <router-link class="nav-link" :to="{name: 'Contacts'}">All Contacts</router-link>
+          <router-link class="nav-link" :to="{name: 'NewContact'}">Add Contact</router-link>
+          <router-link class="nav-link" :to="{name: 'Login'}" v-if="!isLoggedIn">Login/Signup</router-link>
+          <p class="nav-link" @click="signOut" v-if="isLoggedIn">Sign Out</p>
         </ul>
       </div>
     </nav>
@@ -18,11 +19,26 @@
 </template>
 
 <script>
-
+import firebase from "firebase/app";
+import "firebase/auth";
 export default {
   name: 'navigation',
   components: {
-
+  },
+  data() {
+    return {
+    }
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$store.state.isLoggedIn;
+    }
+  },
+  methods: {
+    signOut() {
+      firebase.auth().signOut();
+      this.$router.push({name:"Login"});
+    }
   }
 }
 </script>
@@ -31,7 +47,8 @@ export default {
 header {
   background-color: #fff;
   padding: 1rem 0;
-  box-shadow: 0 2px 2px #e8e8e8;
+  box-shadow: 0 2px 5px 1px rgba(64, 60, 67, 0.16);
+  margin-bottom: 2rem;
 }
 
 nav {
@@ -44,9 +61,12 @@ nav {
   color: #555;
   margin: 0 0.5rem;
   padding: 0.2rem 0;
+  display: inline-block;
+  border-bottom: 2px solid transparent;
 
   &:hover, &:active {
-    border-bottom: 2px solid #41B883;
+    border-bottom-color:#01c16c;
+    cursor: pointer;
   }
 }
 
