@@ -1,10 +1,10 @@
 <template>
   <div class="contact-wrapper card">
     <div class="contact-content">
-      <h2 v-if="contact.name">{{ contact.name }}</h2>
-      <p v-if="contact.address">Address: {{ contact.address }} </p>
-      <p v-if="contact.phone">Phone Number: {{ contact.phone }} </p>
-      <router-link class="primary-link" to="#">More details</router-link>
+      <h2 v-if="contact.contactName">{{ contact.contactName }}</h2>
+      <p v-if="contact.contactAddress">Address: {{ contact.contactAddress }} </p>
+      <p v-if="contact.contactPhone">Phone Number: {{ contact.contactPhone }} </p>
+      <router-link class="primary-link" :to="{name:'ViewContact', params: { id: this.contact.contactID }}">More details</router-link>
     </div>
   </div>
 </template>

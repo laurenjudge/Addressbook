@@ -17,15 +17,16 @@ export default {
     components: { 
       Navigation 
     },
+    mounted() {
+      this.$store.dispatch("getContacts");
+    },
     created() {
       firebase.auth().onAuthStateChanged((user) => {
         this.$store.commit("updateIsLoggedIn", user);
         if(user) {
           this.$store.dispatch("getUser");
-          console.log(this.$store.state.userToken)
         }
       })
-      console.log(firebase.auth().currentUser)
     }
 }
 </script>
@@ -35,7 +36,8 @@ export default {
 $primary: #01c16c;
 $secondary: #35495E;
 $background--dark: #394c61;
-$error: #de0000;
+$danger: #de0000;
+$danger--light: #ca4b4b;
 $white: #fff;
 
 
@@ -105,6 +107,7 @@ a { text-decoration: none; }
 
 .main-heading {
   margin: 0.5rem 0 1.5rem;
+  text-align: center;
 }
 
 .btn {
@@ -114,12 +117,15 @@ a { text-decoration: none; }
   align-self: flex-end;
   border-radius: 3px;
   font-weight: bold;
+  &:hover {
+    cursor: pointer;
+  }
 
   &--primary { 
     background-color: $primary; 
-    &:hover {
-      cursor: pointer;
-    }
+  }
+  &--danger { 
+    background-color: $danger--light; 
   }
 }
 
@@ -138,7 +144,7 @@ a { text-decoration: none; }
   &__error {
     text-align: center;
     padding: 0 8px;
-    color: $error;
+    color: $danger;
     margin: 1rem 0;
   }
 }

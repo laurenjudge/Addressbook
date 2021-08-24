@@ -8,22 +8,32 @@ const routes = [
   {
     path: '/',
     name: 'Contacts',
-    component: () => import(/* webpackChunkName: "contacts" */ '../views/ContactList.vue')
+    component: () => import(/* webpackChunkName: "Contacts" */ '../views/ContactList.vue')
   },
   {
     path: '/new-contact',
     name: 'NewContact',
-    component: () => import(/* webpackChunkName: "NewContact" */ '../views/ContactForm.vue')
+    component: () => import(/* webpackChunkName: "NewContact" */ '../views/ContactCreate.vue')
+  },
+  {
+    path: '/edit-contact/:id',
+    name: 'EditContact',
+    component: () => import(/* webpackChunkName: "EditContact" */ '../views/ContactEdit.vue')
+  },
+  {
+    path: '/view-contact/:id',
+    name: 'ViewContact',
+    component: () => import(/* webpackChunkName: "ViewContact" */ '../views/ContactView.vue')
   },
   {
     path: '/login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
+    component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue')
   },
   {
     path: '/signup',
     name: 'Signup',
-    component: () => import(/* webpackChunkName: "signup" */ '../views/Signup.vue')
+    component: () => import(/* webpackChunkName: "Signup" */ '../views/Signup.vue')
   }
 ]
 
