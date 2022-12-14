@@ -1,5 +1,8 @@
 # vue-addressbook
 
+## About
+This is a simple CRUD application that includes authentication
+
 ## Project setup
 ```
 npm install
